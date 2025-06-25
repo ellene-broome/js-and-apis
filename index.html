@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gemini API Result</title>
+</head>
+<body>
+  <h1>Gemini Response</h1>
+  <div id="output">Waiting for response...</div>
+
+  <script>
+    async function getGeminiContent() {
+      const res = await fetch("https://proxy-key-2ywi.onrender.com", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: "thisIsASecureSecret" }),
+      });
+
+      const { key } = await res.json();
+
+      const response = await fetch("https://generativeai.googleapis.com/v1beta/models/gemini-pro:generateContent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${key}`
+        },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: "Tell me a fun fact" }] }]
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("output").innerText = data.choices?.[0]?.message?.content || "No result";
+    }
+
+    getGeminiContent();
+  </script>
+</body>
+</html>
