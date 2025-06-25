@@ -5,11 +5,14 @@
 </head>
 <body>
   <h1>Gemini Response</h1>
+  <button onclick="getGeminiContent()">Get Gemini Response</button>
+
   <div id="output">Waiting for response...</div>
 
+  
   <script>
     async function getGeminiContent() {
-      const res = await fetch("https://proxy-key-2ywi.onrender.com", {
+      const res = await fetch("https://proxy-key-2ywi.onrender.com/get-key", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: "thisIsASecureSecret" }),
@@ -34,5 +37,8 @@
 
     getGeminiContent();
   </script>
+  
+  <script src="script.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,26 @@
+{
+  "name": "js-and-apis",
+  "version": "1.0.0",
+  "description": "- Learn how to send and receive data from APIs using JavaScript.\r - Secure API keys using a proxy server on Render.\r - Use Gemini's AI API to generate content.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellene-broome/js-and-apis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ellene-broome/js-and-apis/issues"
+  },
+  "homepage": "https://github.com/ellene-broome/js-and-apis#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  }
+}
