@@ -1,19 +1,34 @@
 console.log("Hello, World!");
 
-async function getGeminiCOntent(){
+// Part 2: Retrieve Gemini API key from your proxy server
+async function getGeminiContent() {
     try {
-        const responce = await fetch("http://localhost:3000/get-key");
-        const data = await responce.json();
+        const response = await fetch("https://proxy-key-2ywi.onrender.com", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: "shhhDoNotTell" }) // Replaced with actual secret
+        });
+
+        const data = await response.json();
         console.log("GET response:", data);
-        
-        }
-        catch (error) {
-            console.error ("Error fetching posts:", error);
-        }
+
+    } catch (error) {
+        console.error("Error fetching key:", error);
     }
+}
 
-    fetchPosts();
+// Part 1: Send GET request
+async function fetchPosts() {
+    try {
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+        const data = await response.json();
+        console.log("GET response:", data);
+    } catch (error) {
+        console.error("Error fetching posts:", error);
+    }
+}
 
+// Part 1: Send POST request
 async function createPost() {
     try {
         const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -34,13 +49,12 @@ async function createPost() {
     }
 }
 
-createPost();
-
+// Part 1: Handle invalid GET request
 async function fetchInvalid() {
     try {
         const response = await fetch('https://jsonplaceholder.typicode.com/invalid');
         if (!response.ok) {
-            throw new Error("network response was not ok");
+            throw new Error("Network response was not ok");
         }
         const data = await response.json();
         console.log("Invalid GET response:", data);
@@ -49,4 +63,8 @@ async function fetchInvalid() {
     }
 }
 
+// Call the functions
+getGeminiContent();
+fetchPosts();
+createPost();
 fetchInvalid();
